@@ -290,15 +290,18 @@
                 <i class="fas fa-plane icon-sm"></i>
                 <span>CUIDAMOS TU VIAJE</span>
             </a>
-            <a href="{{ route('form') }}">CONTÁCTANOS</a>
+            <a href="{{ route('form') }}" wire:navigate>CONTÁCTANOS</a>
         </div>
 
         <div class="menu-mobile" x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" @click.stop x-cloak>
-            <a href="#" @click="open = false">HOME</a>
+            <a href="{{ route('home') }}" @click="open = false" wire:navigate>HOME</a>
+
+
             <a href="https://www.tudrencasa.com/" @click="open = false" class="menu-item">
                 <i class="fas fa-heartbeat icon-sm"></i>
                 <span>CUIDAMOS TU SALUD</span>
             </a>
+
             <a href="https://tudrenviajes.com/" @click="open = false" class="menu-item">
                 <i class="fas fa-plane icon-sm"></i>
                 <span>CUIDAMOS TU VIAJE</span>

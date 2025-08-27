@@ -381,7 +381,7 @@
         </button>
 
         <div class="menu-desktop">
-            <a href="{{ route('home') }}">HOME</a>
+            <a href="{{ route('home') }}" wire:navigate>HOME</a>
             <a href="https://www.tudrencasa.com/" class="menu-item" target="_blank">
                 <i class="fas fa-heartbeat icon-sm"></i>
                 <span>CUIDAMOS TU SALUD</span>
