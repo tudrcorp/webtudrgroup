@@ -1,15 +1,20 @@
 <?php
 
-use Illuminate\Support\Facades\Route;
+
 use Livewire\Volt\Volt;
+use App\Livewire\GuestRegister;
+use Illuminate\Support\Facades\Route;
+use App\Http\Controllers\GuestsController;
 
 Route::get('/', function () {
     return view('welcome');
 })->name('home');
 
-Route::get('/form', function () {
-    return view('form');
-})->name('form');
+// Route::view('/guest/register', function () {
+//     return view('form');
+// })->name('guest.register');
+
+Route::view('guest', 'form')->name('guest.register');
 
 Route::view('dashboard', 'dashboard')
     ->middleware(['auth', 'verified'])

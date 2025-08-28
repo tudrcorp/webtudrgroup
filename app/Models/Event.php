@@ -1,0 +1,24 @@
+<?php
+
+namespace App\Models;
+
+use Illuminate\Database\Eloquent\Model;
+
+class Event extends Model
+{
+    protected $fillable = [
+        'title',
+        'description',
+        'image',
+        'dateInit',
+        'dateEnd',
+        'status',
+        'created_by',
+        'webBrowser',
+    ];
+
+    public function guests()
+    {
+        return $this->hasMany(Guest::class);
+    }
+}

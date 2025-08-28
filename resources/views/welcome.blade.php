@@ -1,5 +1,6 @@
 <!DOCTYPE html>
-<html lang="es" class="h-screen overflow-hidden">
+<html lang="{{ str_replace('_', '-', app()->getLocale()) }}">
+
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
@@ -14,7 +15,7 @@
 
     <meta property="og:title" content="Cuidamos tu Salud y tu Viaje">
     <meta property="og:description" content="TuDoctorGroup te ofrece servicios de salud a domicilio y seguros de viaje.">
-    <meta property="og:image" content="{{ asset('images/social-share.jpg') }}">
+    <meta property="og:image" content="{{ asset('images/logoWp3.png') }}">
     <meta property="og:url" content="https://www.tudrengroup.com/">
     <meta property="og:type" content="website">
 
@@ -33,241 +34,29 @@
     <link rel="apple-touch-icon" sizes="180x180" href="{{ asset('images/logoWp3.png') }}">
     <link rel="icon" type="image/png" sizes="192x192" href="{{ asset('images/logoWp3.png') }}">
 
-    <style>
-        body,
-        html {
-            margin: 0;
-            padding: 0;
-            font-family: 'Verdana', sans-serif;
-            color: #ffffff;
-            height: 100vh;
-            width: 100vw;
-            overflow: hidden;
-            position: relative;
-        }
-
-        .fullscreen-video {
-            position: fixed;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            object-fit: cover;
-            z-index: -1;
-        }
-
-        .overlay {
-            position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
-            background: rgba(0, 0, 0, 0.4);
-            z-index: -1;
-        }
-
-        .logo {
-            position: absolute;
-            top: 2rem;
-            right: 2rem;
-            z-index: 10;
-        }
-
-        .logo img {
-            height: 45px;
-            filter: drop-shadow(0 0 4px rgba(0, 0, 0, 0.3));
-        }
-
-        /* Redes sociales */
-        .socials {
-            position: absolute;
-            bottom: 2rem;
-            left: 2rem;
-            z-index: 10;
-            display: flex;
-            flex-direction: column;
-            align-items: center;
-            gap: 1.5rem;
-        }
-
-        .socials a {
-            color: #ffffff; /* Color blanco más acentuado por defecto */
-            font-size: 1.4rem;
-            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones más suaves */
-        }
-
-        .socials a:hover {
-            color: #ffffff;
-            transform: scale(1.2); /* Efecto de agrandamiento más notable */
-            text-shadow: 0 0 10px #ffffff; /* Sombra de brillo al pasar el cursor */
-        }
-
-
-        /* Footer */
-        .footer {
-            position: absolute;
-            bottom: 1rem;
-            left: 50%;
-            transform: translateX(-50%);
-            z-index: 10;
-            text-align: center;
-        }
-
-        .footer p {
-            margin: 0;
-            font-family: 'Verdana', sans-serif;
-            font-size: 0.9rem;
-            color: #ffffff; /* Color blanco acentuado */
-            letter-spacing: 2px; /* Espaciado entre letras para resaltar */
-            text-shadow: 0 0 5px rgba(0, 0, 0, 0.5); /* Sombra para mayor visibilidad */
-        }
-
-
-        /* --- MENÚ DE ESCRITORIO (visible en pantallas grandes) --- */
-        /* --- MENÚ DE ESCRITORIO (visible en pantallas grandes) --- */
-        .menu-desktop {
-            display: flex;
-            gap: 2.5rem;
-        }
-
-        .menu-desktop a {
-            color: #ffffff; /* Color blanco acentuado por defecto */
-            text-decoration: none;
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            position: relative;
-            padding-bottom: 6px;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-            transition: color 0.3s ease, transform 0.3s ease, text-shadow 0.3s ease; /* Transiciones para el nuevo efecto */
-        }
-
-        .menu-desktop a .icon-sm {
-            font-size: 0.85em;
-            opacity: 0.9;
-            min-width: 16px;
-            text-align: center;
-        }
-
-        .menu-desktop a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1.5px;
-            bottom: 0;
-            left: 0;
-            background-color: #ffffff; /* La línea también es blanca y resalta */
-            transition: width 0.3s ease;
-            border-radius: 1px;
-        }
-
-        .menu-desktop a:hover {
-            transform: scale(1.05); /* Efecto de agrandamiento más sutil para el menú */
-            text-shadow: 0 0 10px #ffffff; /* Sombra de brillo al pasar el cursor */
-        }
-
-        .menu-desktop a:hover::after {
-            width: 100%;
-        }
-
-
-        /* --- BOTÓN HAMBURGUESA (solo en móvil) --- */
-        .menu-toggle {
-            display: none;
-            background: none;
-            border: none;
-            color: white;
-            font-size: 1.5rem;
-            cursor: pointer;
-            padding: 0.5rem;
-        }
-
-        /* --- MENÚ MÓVIL (oculto por defecto) --- */
-        .menu-mobile {
-            position: absolute;
-            top: 3.5rem;
-            left: 0;
-            background: rgba(0, 0, 0, 0.9);
-            backdrop-filter: blur(6px);
-            -webkit-backdrop-filter: blur(6px);
-            padding: 1rem 1.5rem;
-            border-radius: 10px;
-            flex-direction: column;
-            gap: 1.2rem;
-            width: 240px;
-        }
-
-        .menu-mobile a {
-            color: rgba(255, 255, 255, 0.85);
-            text-decoration: none;
-            font-family: 'Helvetica', 'Arial', sans-serif;
-            font-size: 1.1rem;
-            font-weight: 500;
-            letter-spacing: 1.5px;
-            text-transform: uppercase;
-            position: relative;
-            padding: 0.5rem 0;
-            display: flex;
-            align-items: center;
-            gap: 8px;
-        }
-
-        .menu-mobile a::after {
-            content: '';
-            position: absolute;
-            width: 0;
-            height: 1.5px;
-            bottom: 0;
-            left: 0;
-            background-color: rgba(255, 255, 255, 0.7);
-            transition: width 0.3s ease;
-            border-radius: 1px;
-        }
-
-        .menu-mobile a:hover::after {
-            width: 100%;
-            background-color: #ffffff;
-        }
-
-        /* --- RESPONSIVE: Móviles --- */
-        @media (max-width: 1024px) {
-            .menu-toggle {
-                display: block;
-            }
-
-            .menu-desktop {
-                display: none !important;
-            }
-
-            /* Esta regla ahora es innecesaria y puede ser eliminada
-            .menu-mobile[style*='display: block'] {
-                display: flex !important;
-            }
-            */
-        }
-
-        /* Ocultar mientras carga Alpine */
-        [x-cloak] {
-            display: none !important;
-        }
-
-        
-    </style>
-
-    @vite(['resources/css/app.css', 'resources/js/app.js'])
+    @vite(['resources/css/app.css', 'resources/js/app.js', 'resources/css/styleHome.css'])
     @fluxAppearance
 
 
 </head>
 <body x-data="{ open: false }" @click.away="open = false">
     <video autoplay muted loop playsinline class="fullscreen-video">
-        <source src="{{ asset('images/video2.mp4') }}" type="video/mp4">
+        <source src="{{ asset('images/video3.mp4') }}" type="video/mp4">
         Tu navegador no soporta videos HTML5.
     </video>
+
+    <!-- Contenido centrado -->
+    <div class="content-center">
+        <div class="text-center">
+            <h1 class="title">
+                La misión <span style="color: #e0e0e0;">ha sido</span> activada<br>
+                <span style="color: #bebebe;">Sé parte de nuestra</span> nueva era <span style="color: #bebebe;">de negocios.
+            </h1>
+            <a href="{{ route('guest.register') }}" class="btn-register">
+                ¡Regístrate Ahora!
+            </a>
+        </div>
+    </div>
 
     <div class="overlay"></div>
 
@@ -281,41 +70,36 @@
         </button>
 
         <div class="menu-desktop">
-            <a href="#">HOME</a>
+            <a href="#">Inicio</a>
             <a href="https://www.tudrencasa.com/" class="menu-item" target="_blank">
                 <i class="fas fa-heartbeat icon-sm"></i>
-                <span>CUIDAMOS TU SALUD</span>
+                <span>Asistencia de salud</span>
             </a>
             <a href="https://tudrenviajes.com/" class="menu-item" target="_blank">
                 <i class="fas fa-plane icon-sm"></i>
-                <span>CUIDAMOS TU VIAJE</span>
+                <span>Asistencia en viajes</span>
             </a>
-            <a href="{{ route('form') }}" wire:navigate>CONTÁCTANOS</a>
+            <a href="{{ route('guest.register') }}" wire:navigate>Contáctenos</a>
         </div>
 
         <div class="menu-mobile" x-show="open" x-transition:enter="transition ease-out duration-200" x-transition:enter-start="opacity-0 transform -translate-y-2" x-transition:enter-end="opacity-100 transform translate-y-0" x-transition:leave="transition ease-in duration-150" x-transition:leave-start="opacity-100 transform translate-y-0" x-transition:leave-end="opacity-0 transform -translate-y-2" @click.stop x-cloak>
-            <a href="{{ route('home') }}" @click="open = false" wire:navigate>HOME</a>
-
-
+            <a href="{{ route('home') }}" @click="open = false" wire:navigate>Inicio</a>
             <a href="https://www.tudrencasa.com/" @click="open = false" class="menu-item">
                 <i class="fas fa-heartbeat icon-sm"></i>
-                <span>CUIDAMOS TU SALUD</span>
+                <span>Asistencia de salud</span>
             </a>
-
             <a href="https://tudrenviajes.com/" @click="open = false" class="menu-item">
                 <i class="fas fa-plane icon-sm"></i>
-                <span>CUIDAMOS TU VIAJE</span>
+                <span>Asistencia en viajes</span>
             </a>
-            <a href="#" @click="open = false">CONTÁCTANOS</a>
+            <a href="#" @click="open = false">Contáctenos</a>
         </div>
     </nav>
-
-
 
     <div class="socials">
         <a href="https://instagram.com/tuempresa" target="_blank"><i class="fab fa-instagram"></i></a>
         <a href="https://tiktok.com/@tuempresa" target="_blank"><i class="fab fa-tiktok"></i></a>
-        <a href="https://facebook.com/tuempresa" target="_blank"><i class="fab fa-facebook"></i></a>
+        <a href="https://facebook.com/tuempresa" target="_blank"><i class="fab fa-youtube"></i></a>
     </div>
 
     <div class="footer">
@@ -324,6 +108,6 @@
 
     @livewireScripts
 
-    <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script>
+    {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 </body>
 </html>
