@@ -4,7 +4,8 @@
 <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Cuidamos tu Salud y tu Viaje</title>
+    <title>TuDoctorGroup</title>
+
 
     <!--SEO-->
     <meta name="description" content="TuDoctorGroup cuida de tu salud y tus viajes con servicios médicos a domicilio y seguros de viaje. Cuidamos de ti, donde sea que estés.">
@@ -61,7 +62,8 @@
     <div class="overlay"></div>
 
     <div class="logo">
-        <img src="{{ asset('images/logoTDG.png') }}" alt="Logo Empresa" />
+        <img src="{{ asset('images/logoTDG.png') }}" alt="TuDoctorGroup" />
+
     </div>
 
     <nav class="navbar" style="position: absolute; top: 2.5rem; left: 2rem; z-index: 10;">
@@ -108,6 +110,5 @@
 
     @livewireScripts
 
-    {{-- <script defer src="https://unpkg.com/alpinejs@3.x.x/dist/cdn.min.js"></script> --}}
 </body>
 </html>
