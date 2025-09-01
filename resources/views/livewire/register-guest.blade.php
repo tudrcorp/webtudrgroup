@@ -12,7 +12,8 @@
                         <flux:input wire:model="phone" mask="(9999) 999-9999" label="Número de Teléfono" type="text" placeholder="..." />
                         <flux:input wire:model="agency" label="Agencia(opcional)" type="text" placeholder="..." />
 
-                        <flux:select 
+                        <!-- Solicitud de Cambio el dia 1/sep/2025  --> 
+                        {{-- <flux:select 
                             wire:model="companion" 
                             label="Número de Acompañantes" 
                             type="text" 
@@ -21,7 +22,7 @@
                             <flux:select.option></flux:select.option>
                             <flux:select.option>Un(1) Acompañante</flux:select.option>
                             <flux:select.option>Dos(2) Acompañantes</flux:select.option>
-                        </flux:select>
+                        </flux:select> --}}
 
                     </div>
                     <div class="space-y-2">
