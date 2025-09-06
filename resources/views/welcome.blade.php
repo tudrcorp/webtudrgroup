@@ -42,7 +42,7 @@
 </head>
 <body x-data="{ open: false }" @click.away="open = false">
     <video autoplay muted loop playsinline class="fullscreen-video">
-        <source src="{{ asset('images/video3.mp4') }}" type="video/mp4">
+        <source src="{{ asset('images/videoNuevo.mp4') }}" type="video/mp4">
         Tu navegador no soporta videos HTML5.
     </video>
 
